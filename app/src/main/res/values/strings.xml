@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">UberClone</string>
+    <string name="app_name">Uber clone</string>
+    <string name="app_message">Uber clone es un aplicativo similar a UBER</string>
+    <string name="msg_driver">Soy conductor</string>
+    <string name="msg_client">Soy cliente</string>
+    <string name="select_opion">Selecciona una opción</string>
+    <string name="sign_in">Registrarme ahora</string>
+    <string name="log_in">Ya tengo cuenta</string>
+    <string name="full_name">Nombre completo</string>
+    <string name="email">Correo electronico</string>
+    <string name="password">constraseña</string>
+    <string name="register">Registrar</string>
+    <string name="start_login">Iniciar sesión</string>
+    <string name="choose_option">Seleccione una opción</string>
+    <string name="wait_moment">Espere un momento</string>
+    <string name="login">Inicio de sesión</string>
+    <string name="msg_register">Regístrate</string>
 </resources>
