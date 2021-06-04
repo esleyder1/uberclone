@@ -1,15 +1,22 @@
-package com.dev.uberclone;
+package com.dev.uberclone.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.app.AlertDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.dev.uberclone.R;
+import com.dev.uberclone.activities.client.MapClientActivity;
+import com.dev.uberclone.activities.client.RegisterActivity;
+import com.dev.uberclone.activities.driver.MapDriverActivity;
+import com.dev.uberclone.activities.driver.RegisterDriverActivity;
+import com.dev.uberclone.includes.MyToolbar;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -24,23 +31,17 @@ public class LoginActivity extends AppCompatActivity {
 
     TextInputEditText txtInputEmail, txtInputPassword;
     Button btnLogin;
-
     FirebaseAuth auth;
     DatabaseReference database;
-
     AlertDialog dialog;
-    Toolbar toolbar;
+    SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle(R.string.login);
+        MyToolbar.show(this, R.string.login, true);
 
         txtInputEmail = findViewById(R.id.txtInputEmail);
         txtInputPassword = findViewById(R.id.txtInputPassword);
@@ -50,6 +51,8 @@ public class LoginActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance().getReference();
 
         dialog = new SpotsDialog.Builder().setContext(this).setMessage(R.string.wait_moment).build();
+
+        pref = this.getSharedPreferences("typeUser", MODE_PRIVATE);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +73,16 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
-                            Toast.makeText(LoginActivity.this, "Login correcto", Toast.LENGTH_SHORT).show();
+                            String typeUser = pref.getString("user", "");
+                            Intent i;
+                            if(typeUser.equals("client")){
+                                i = new Intent(LoginActivity.this, MapClientActivity.class);
+                                //no deja aplicaciones existentes con FLAG_ACTIVITY_NEW_TASK
+                            }else{
+                                i = new Intent(LoginActivity.this, MapDriverActivity.class);
+                            }
+                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(i);
                         }else {
                             Toast.makeText(LoginActivity.this, "Error en el correo o contraseña", Toast.LENGTH_SHORT).show();
                         }

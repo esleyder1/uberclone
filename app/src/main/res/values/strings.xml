@@ -15,4 +15,7 @@
     <string name="wait_moment">Espere un momento</string>
     <string name="login">Inicio de sesión</string>
     <string name="msg_register">Regístrate</string>
+    <string name="msg_register_driver">Registro de conductor</string>
+    <string name="vehicle_brand">Marca del vehiculo</string>
+    <string name="vehicle_plate">Placa del vehiculo</string>
 </resources>

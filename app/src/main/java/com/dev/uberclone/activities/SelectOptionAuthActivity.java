@@ -1,16 +1,20 @@
-package com.dev.uberclone;
+package com.dev.uberclone.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+
+import com.dev.uberclone.R;
+import com.dev.uberclone.activities.client.RegisterActivity;
+import com.dev.uberclone.activities.driver.RegisterDriverActivity;
+import com.dev.uberclone.includes.MyToolbar;
 
 public class SelectOptionAuthActivity extends AppCompatActivity {
-
-    Toolbar toolbar;
+    SharedPreferences pref;
     Button btnGoToLogin, btnGoToRegister;
 
     @Override
@@ -18,11 +22,7 @@ public class SelectOptionAuthActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_option_auth);
 
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle(R.string.choose_option);
+        MyToolbar.show(this, R.string.choose_option, true);
 
         btnGoToLogin = findViewById(R.id.btnGoToLogin);
         btnGoToRegister = findViewById(R.id.btnGoToRegister);
@@ -41,6 +41,7 @@ public class SelectOptionAuthActivity extends AppCompatActivity {
             }
         });
 
+        pref = this.getSharedPreferences("typeUser", MODE_PRIVATE);
 
     }
 
@@ -50,7 +51,13 @@ public class SelectOptionAuthActivity extends AppCompatActivity {
     }
 
     private void goToRegister() {
-        Intent i = new Intent(this, RegisterActivity.class);
+        String typeUser = pref.getString("user", "");
+        Intent i;
+        if(typeUser.equals("client")){
+            i = new Intent(this, RegisterActivity.class);
+        }else{
+            i = new Intent(this, RegisterDriverActivity.class);
+        }
         startActivity(i);
     }
 }

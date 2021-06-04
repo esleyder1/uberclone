@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".activities.client.RegisterActivity">
+    tools:context=".activities.driver.RegisterDriverActivity">
 
     <include layout="@layout/actionbar_toolbar"/>
 
@@ -15,18 +15,18 @@
         android:orientation="vertical"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp">
 
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/icon_user"
-                    android:contentDescription="first_name" />
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/icon_user"
+                android:contentDescription="first_name" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -40,7 +40,7 @@
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            </LinearLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -94,6 +94,68 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/password"
+                    android:inputType="textPassword" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            android:layout_margin="10dp">
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_margin="4dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/icon_car"
+                android:contentDescription="" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtInputVehicleBrand"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/vehicle_brand"
+                    android:inputType="textPassword" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            android:layout_margin="10dp">
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_margin="4dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/icon_brand"
+                android:contentDescription="first_name" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtInputVehiclePlate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/vehicle_plate"
                     android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
